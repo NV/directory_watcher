@@ -1,4 +1,4 @@
-
+require 'spec/rake/spectask'
 begin
   require 'bones'
 rescue LoadError
@@ -17,9 +17,14 @@ Bones {
   version      DirectoryWatcher::VERSION
   ignore_file  '.gitignore'
 
-  rubyforge.name  'codeforpeople'
+#  rubyforge.name  'codeforpeople'
 
   depend_on  'rev',          :development => true
   depend_on  'eventmachine', :development => true
 }
 
+# rake spec
+Spec::Rake::SpecTask.new do |t|
+  t.spec_opts = ['-c', '--format specdoc']
+  t.verbose = true
+end
